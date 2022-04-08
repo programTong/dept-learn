@@ -1,18 +1,14 @@
 <template>
-    <el-container style="min-height: 100vh">
-      <el-header height="70px">
-        <Header/>
-      </el-header>
-      <el-container style="">
-        <el-aside :width="asideWidth + 'px'">
-          <Aside/>
-        </el-aside>
-        <el-main>
-          <router-view/>
-        </el-main>
-      </el-container>
-    </el-container>
-</template>
+  <div class="wrapper">
+    <Header/>
+    <Aside/>
+    <div class="content-box" :class="{'content-collapse':collapse}">
+      <div class="content">
+            <router-view></router-view>
+      </div>
+    </div>
+  </div>
+ </template>
 
 <script>
 import Aside from '@/components/Aside'
@@ -25,11 +21,13 @@ export default {
   },
   data() {
     return {
-      asideWidth: 200
+      asideWidth: 200,
+      collapse: false
     }
   },
   created() {
     bus.$on('collapseChange', msg => {
+      this.collapse = msg;
       console.log(msg);
       this.asideWidth = msg? 70 : 200;
     });
@@ -38,17 +36,27 @@ export default {
 </script>
 
 <style scoped>
-.el-header {
-  padding: 0;
+.wrapper{
+  width: 100%;
+  height: 100vh;
 }
-
-.el-aside{
-  transition: width 0.7s;
-  -webkit-transition: width 0.7s;
-  -moz-transition: width 0.7s;
-  -o-transition: width 0.7s;
+.content-box{
+  position: absolute;
+  left: 250px;
+  right: 0;
+  top: 70px;
+  bottom: 0;
+  transition: left 0.3s ease-in-out;
+}
+.content{
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
-
+.content-collapse {
+  left: 64px;
+}
 
 </style>

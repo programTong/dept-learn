@@ -1,5 +1,8 @@
 # dept-learn
 
+部门管理、员工管理 
+
+![](1.png)
 ## Project setup
 ```
 npm install

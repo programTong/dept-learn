@@ -9,6 +9,17 @@ export function add(department) {
     })
 }
 
+export function removeBatch(ids) {
+    return request({
+        url: "/department/remove_batch",
+        method: "delete",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(ids)
+    })
+}
+
 export function remove(id) {
     return request({
         url: "/department/remove/" + id,

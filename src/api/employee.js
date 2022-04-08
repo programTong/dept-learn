@@ -9,6 +9,15 @@ export function add(employee) {
     })
 }
 
+export function removeEmpBatch(ids) {
+    return request({
+        url: "/employee/remove_batch/",
+        method: "delete",
+        data: JSON.stringify(ids)
+    })
+}
+
+
 export function remove(id) {
     return request({
         url: "/employee/remove/" + id,

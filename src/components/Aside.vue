@@ -1,6 +1,11 @@
 <template>
-    <el-menu  style="min-height: 100%" background-color="#324157"
-          router :collapse-transition = "false" text-color="#fff" :collapse="isCollapse">
+  <div class="sidebar">
+    <el-menu
+        class="sidebar-el-menu"
+              background-color="#324157"
+              router
+              text-color="#fff"
+              :collapse="isCollapse">
       <div v-for="item in items" :key="item.index">
         <div v-if="item.role">
           <div v-if="item.subs">
@@ -26,6 +31,8 @@
         </div>
       </div>
     </el-menu>
+  </div>
+
 
 </template>
 
@@ -73,6 +80,16 @@ export default {
 </script>
 
 <style scoped>
-
-
+.sidebar{
+  position: absolute;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+}
+.sidebar-el-menu:not(.el-menu--collapse) {
+  width: 250px;
+}
+.sidebar > ul {
+  height: 100%;
+}
 </style>
